@@ -26,25 +26,11 @@ MyDemoApplication.prototype.initPhysics = function(){
   boxTrans1.setIdentity();
   boxTrans1.setOrigin(this.tVec(0, 1.0, 0));
   var box1 = this.localCreateRigidBody(1, boxTrans1, boxShape1);
-  var boxShape2 = new Ammo.btBoxShape(this.tVec(0.2, 1, 0.2));
-  var boxTrans2 = new Ammo.btTransform();
-  boxTrans2.setIdentity();
-  boxTrans2.setOrigin(this.tVec(1, 3.0, 0));
-  var box2 = this.localCreateRigidBody(1, boxTrans2, boxShape2);
-  // 1st constructor
-  var hinge1 = new Ammo.btHingeConstraint(box1,
-					  box2,
-					  new Ammo.btVector3(0,1,0),
-					  new Ammo.btVector3(0,-1,0),
-					  new Ammo.btVector3(0,0,1),
-					  new Ammo.btVector3(0,0,1),
-					  false);
-  // 2nd constructor
-  var hinge2 = new Ammo.btHingeConstraint(box2,
+  
+  var hinge2 = new Ammo.btHingeConstraint(box1,
 					  new Ammo.btVector3(0,1,0),
 					  new Ammo.btVector3(0,0,1),
 					  false);
-  this.m_dynamicsWorld.addConstraint(hinge1, true);
   this.m_dynamicsWorld.addConstraint(hinge2, true);
 
   // Create infinite ground plane
